@@ -3,6 +3,6 @@ LABEL author="Sharath"
 WORKDIR /Users/sharathkumargorrepati/Desktop/VisualStudioJenkinsLearing/jgsu-spring-petclinic
 # MAINTAINER Sharath
 #RUN mkdir -p /home/app
-#COPY spring*.jar ./
+COPY target/spring*.jar /project.jar
 EXPOSE 7090
-CMD ["java","-jar","target/*.jar"]
+CMD ["java", "-jar", "project.jar"]
