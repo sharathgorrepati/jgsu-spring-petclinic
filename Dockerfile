@@ -1,6 +1,7 @@
 FROM ubuntu
+WORKDIR /Users/sharathkumargorrepati/Desktop/VisualStudioJenkinsLearing/jgsu-spring-petclinic
 # MAINTAINER Sharath
-RUN mkdir -p /home/app
-COPY /Users/sharathkumargorrepati/Desktop/VisualStudioJenkinsLearing /home/app
+#RUN mkdir -p /home/app
+COPY spring*.jar ./
 EXPOSE 80 
 CMD ["java","-jar","*target/*.jar"]
