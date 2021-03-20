@@ -5,4 +5,4 @@ WORKDIR /Users/sharathkumargorrepati/Desktop/VisualStudioJenkinsLearing/jgsu-spr
 #RUN mkdir -p /home/app
 COPY target/spring*.jar .
 EXPOSE 7090
-CMD ["java", "-jar", "spring*.jar"]
+ENTRYPOINT ["java", "-jar", "/Users/sharathkumargorrepati/Desktop/VisualStudioJenkinsLearing/jgsu-spring-petclinic/target/spring*.jar"]
