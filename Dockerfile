@@ -3,6 +3,6 @@ LABEL author="Sharath"
 WORKDIR /Users/sharathkumargorrepati/Desktop/VisualStudioJenkinsLearing/jgsu-spring-petclinic
 # MAINTAINER Sharath
 #RUN mkdir -p /home/app
-COPY target/spring*.jar .
+COPY target/spring-petclinic-2.3.1.BUILD-SNAPSHOT.jar .
 EXPOSE 7090
-ENTRYPOINT ["java", "-jar", "/Users/sharathkumargorrepati/Desktop/VisualStudioJenkinsLearing/jgsu-spring-petclinic/target/spring*.jar"]
+ENTRYPOINT ["java", "-jar", "spring-petclinic-2.3.1.BUILD-SNAPSHOT.jar"]
