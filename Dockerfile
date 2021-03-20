@@ -4,5 +4,5 @@ WORKDIR /Users/sharathkumargorrepati/Desktop/VisualStudioJenkinsLearing/jgsu-spr
 # MAINTAINER Sharath
 #RUN mkdir -p /home/app
 COPY target/spring-petclinic-2.3.1.BUILD-SNAPSHOT.jar .
-EXPOSE 7090
-ENTRYPOINT ["java", "-jar", "spring-petclinic-2.3.1.BUILD-SNAPSHOT.jar"]
+EXPOSE 8080
+CMD ["java", "-jar", "spring-petclinic-2.3.1.BUILD-SNAPSHOT.jar"]
