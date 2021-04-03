@@ -1,0 +1,70 @@
+---
+- hosts: Wnodes
+  #remote_user: sharath
+  become: yes
+  become_method: sudo
+  vars:
+    CTOP_VERSION: "0.7.3"
+    DOCKER_COMPOSE_VERSION: "1.25.1"
+    DOCKER_PACKAGES:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg-agent
+      - software-properties-common
+    USER: "sharath"
+  tasks:
+          #- name: Install pip
+          # apt:
+          # name: python-pip
+          # state: present
+
+   - name: create build directory
+     file:
+      path: /root/petClinic-dockerfile
+      state: directory
+      owner: root
+      group: root
+      mode: '0755'
+
+   - name: Update apt packages
+     apt:
+      update_cache: "yes"
+      force_apt_get: "yes"
+
+   - name: Install packages needed for Docker
+     apt:
+      name: "{{ DOCKER_PACKAGES }}"
+      state: present
+      force_apt_get: "yes"
+
+   - name: Add Docker GPG apt Key
+     apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
+        
+   - name: Save the current Ubuntu release version into a variable
+     shell: lsb_release -cs
+     register: ubuntu_version
+
+   - name: Add Docker Repository
+     apt_repository:
+      repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ubuntu_version.stdout }} stable"
+      state: present
+
+   - name: Update apt packages
+     apt:
+      update_cache: "yes"
+      force_apt_get: "yes"
+
+   - name: Install Docker
+     apt:
+      name: "docker-ce"
+      state: present
+      force_apt_get: "yes"
+
+   - name: Reboot server in order for changes to take place
+     shell: "sleep 1 && reboot"
+     async: 1
+     poll: 0
+
